@@ -7,7 +7,7 @@
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "start:build": "tsc -w",
-    "start:run": "nodemon build/index.js",
+    "start:run": "nodemon dist/index.js",
     "start": "concurrently pnpm:start:*"
   },
   "keywords": [],
