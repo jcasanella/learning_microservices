@@ -1,15 +1,22 @@
 import dotenv from 'dotenv';
-import express, {Express, Request, Response} from 'express';
+// import express, {Express, Request, Response} from 'express';
+
+import { createExpressApp } from "./express";
+import { APP_NAME } from './version';
 
 dotenv.config();
 
-const app: Express = express();
+// const app: Express = express();
 const port = process.env.PORT;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server');
-  });
-  
-  app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-  });
+const app = createExpressApp();
+
+function start() {
+  app.listen(port, signalAppStart);
+}
+
+function signalAppStart() {
+  console.log(`${APP_NAME} started in port ${port}`);
+}
+
+start();

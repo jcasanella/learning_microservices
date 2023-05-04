@@ -1,9 +1,12 @@
 {
-  "name": "microservices",
+  "name": "videoservice",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "gen:version": "node -p \"'export const APP_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
+    "gen:appname": "node -p \"'export const APP_NAME = ' + JSON.stringify(require('./package.json').version) + ';'\" >> src/version.ts",
+    "gen": "pnpm pnpm:gen:*",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "start:build": "tsc -w",
