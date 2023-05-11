@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
-export default class Context {
+export class Context {
   static _bindings = new WeakMap<Request, Context>();
   
   public traceId = uuidv4();

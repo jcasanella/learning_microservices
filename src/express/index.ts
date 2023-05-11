@@ -1,9 +1,10 @@
 import express from 'express';
-import { join } from 'path';
-import { mountMiddleware } from './mount-middleware';
-import { mountRoutes } from './mount-routes';
+// import { join } from 'path';
+// import { mountMiddleware } from './mount-middleware';
+// import { mountRoutes } from './mount-routes';
 import Locals from './Locals';
 import Routes from './Routes';
+// import AttachLocals from './middleware/A'
 
 // export function createExpressApp(/* TODO config env*/) {
 //     const app = express();
@@ -34,7 +35,7 @@ class Server {
     }
 
     private mountMiddleware(): void {
-        // TODO
+        this.express = AttachLocals.mount(this.express);
     }
 
     private mountRoutes(): void {

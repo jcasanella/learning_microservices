@@ -1,4 +1,4 @@
-import Context from "./context";
+import Context from "./middleware/Context";
 import { Request, Response } from 'express';
 
 export function lastResortErrorHandler(err: Error, req: Request, res: Response, next: any) {
