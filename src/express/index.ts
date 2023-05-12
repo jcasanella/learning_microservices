@@ -5,6 +5,7 @@ import express from 'express';
 import Locals from './Locals';
 import Routes from './Routes';
 import { AttachLocals } from './middleware/AttachLocals';
+import { PrimeRequestContext } from './middleware/PrimeRequestContext';
 // import AttachLocals from './middleware/A'
 
 // export function createExpressApp(/* TODO config env*/) {
@@ -37,6 +38,7 @@ class Server {
 
     private mountMiddleware(): void {
         this.express = AttachLocals.mount(this.express);
+        this.express = PrimeRequestContext.mount(this.express);
     }
 
     private mountRoutes(): void {
