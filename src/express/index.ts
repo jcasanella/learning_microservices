@@ -4,6 +4,7 @@ import express from 'express';
 // import { mountRoutes } from './mount-routes';
 import Locals from './Locals';
 import Routes from './Routes';
+import { AttachLocals } from './middleware/AttachLocals';
 // import AttachLocals from './middleware/A'
 
 // export function createExpressApp(/* TODO config env*/) {
