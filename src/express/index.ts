@@ -1,12 +1,7 @@
 import express from 'express';
-// import { join } from 'path';
-// import { mountMiddleware } from './mount-middleware';
-// import { mountRoutes } from './mount-routes';
 import Locals from './Locals';
 import Routes from './Routes';
-import { AttachLocals } from './middleware/AttachLocals';
-import { PrimeRequestContext } from './middleware/PrimeRequestContext';
-// import AttachLocals from './middleware/A'
+import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePublic } from './middleware';
 
 // export function createExpressApp(/* TODO config env*/) {
 //     const app = express();
@@ -14,9 +9,6 @@ import { PrimeRequestContext } from './middleware/PrimeRequestContext';
 //     // Configure PUG
 //     app.set('views', join(__dirname, '..'));
 //     app.set('view engine', 'pug');
-
-//     mountMiddleware(app /* TODO env */);
-//     mountRoutes(app, /* TODO config */);
 
 //     return app;
 // }
@@ -39,6 +31,9 @@ class Server {
     private mountMiddleware(): void {
         this.express = AttachLocals.mount(this.express);
         this.express = PrimeRequestContext.mount(this.express);
+        this.express = LastResortErrorHandler.mount(this.express);
+        this.express = LastResortErrorHandler.mount(this.express);
+        this.express = DirnamePublic.mount(this.express);
     }
 
     private mountRoutes(): void {
