@@ -9,10 +9,9 @@
     "gen": "pnpm pnpm:gen:*",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "start:clean": "rimraf dist/",
-    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug dist/",
     "start:build": "tsc -w",
     "start:run": "nodemon dist/index.js",
+    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug dist/",
     "start": "concurrently pnpm:start:*"
   },
   "keywords": [],
