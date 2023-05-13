@@ -2,16 +2,7 @@ import express from 'express';
 import Locals from './Locals';
 import Routes from './Routes';
 import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePublic } from './middleware';
-
-// export function createExpressApp(/* TODO config env*/) {
-//     const app = express();
-
-//     // Configure PUG
-//     app.set('views', join(__dirname, '..'));
-//     app.set('view engine', 'pug');
-
-//     return app;
-// }
+import { ConfigView } from './views/ConfigView';
 
 class Server {
     private express: express.Application;
@@ -22,6 +13,7 @@ class Server {
         this.mountDotEnv();
         this.mountMiddleware();
         this.mountRoutes();
+        this.mountViews();
     }
 
     private mountDotEnv(): void {
@@ -40,20 +32,19 @@ class Server {
         this.express = Routes.mountWeb(this.express);
     }
 
-    public init (): any {
-		const port: number = Locals.config().port;
+    private mountViews(): void {
+        this.express = ConfigView.mount(this.express);
+    }
 
-		// Registering Exception / Error Handlers
-		// this.express.use(ExceptionHandler.logErrors);
-		// this.express.use(ExceptionHandler.clientErrorHandler);
-		// this.express.use(ExceptionHandler.errorHandler);
-		// this.express = ExceptionHandler.notFoundHandler(this.express);
+    public init (): any {
+		const { port, name, version } = Locals.config();
 
 		// Start the server on the specified port
 		this.express.listen(port, () => {
-			return console.log('\x1b[33m%s\x1b[0m', `Server :: Running @ 'http://localhost:${port}'`);
+            console.log(`${name} started`);
+			console.table([['Port', port], ['Version', version]]);
 		}).on('error', (_error) => {
-			return console.log('Error: ', _error.message);
+			console.log('Error: ', _error.message);
 		});
 	}
 }
