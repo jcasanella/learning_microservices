@@ -11,7 +11,7 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "start:build": "tsc -w",
     "start:run": "nodemon dist/index.js",
-    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug dist/",
+    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug .env dist/",
     "start": "concurrently pnpm:start:*"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
     "pg": "^8.10.0",
     "pug": "^3.0.2",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.3.16",
     "uuid": "^9.0.0"
   },
