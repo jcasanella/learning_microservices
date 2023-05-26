@@ -3,11 +3,14 @@ import Locals from './Locals';
 import Routes from './Routes';
 import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePublic } from './middleware';
 import { ConfigView } from './views/ConfigView';
+import { DataSource } from 'typeorm';
+import { RepositoryHandler } from './middleware/RepositoryHandler';
+import { VideoRepository } from './database/manager';
 
 class Server {
     private express: express.Application;
 
-    constructor() {
+    constructor(private readonly dataSource: DataSource) {
         this.express = express();
 
         this.mountDotEnv();
@@ -26,6 +29,10 @@ class Server {
         this.express = LastResortErrorHandler.mount(this.express);
         this.express = LastResortErrorHandler.mount(this.express);
         this.express = DirnamePublic.mount(this.express);
+        this.express = RepositoryHandler.mount(this.express, this.dataSource);
+
+        const video = new VideoRepository(this.dataSource);
+		console.log(video.getAll());
     }
 
     private mountRoutes(): void {
@@ -45,6 +52,7 @@ class Server {
 			console.table([['Port', port], ['Version', version]]);
 		}).on('error', (_error) => {
 			console.log('Error: ', _error.message);
+            this.dataSource.destroy();
 		});
 	}
 }
