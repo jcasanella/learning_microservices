@@ -4,15 +4,15 @@ import Routes from './Routes';
 import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePublic } from './middleware';
 import { ConfigView } from './views/ConfigView';
 import { DataSource } from 'typeorm';
-import { RepositoryHandler } from './middleware/RepositoryHandler';
-import { VideoRepository } from './database/VideoRepository';
-import { appDataSource } from '../database/datasource';
+import { DatabaseManager } from './database/DatabaseManager';
 
 class Server {
     private express: express.Application;
+    private dbManager: DatabaseManager;
 
     constructor(private readonly dataSource: DataSource) {
         this.express = express();
+        this.dbManager = new DatabaseManager(dataSource);
 
         this.mountDotEnv();
         this.mountMiddleware();
@@ -30,11 +30,10 @@ class Server {
         this.express = LastResortErrorHandler.mount(this.express);
         this.express = LastResortErrorHandler.mount(this.express);
         this.express = DirnamePublic.mount(this.express);
-        this.express = RepositoryHandler.mount(this.express, this.dataSource);
     }
 
     private mountRoutes(): void {
-        this.express = Routes.mountWeb(this.express, this.dataSource);
+        this.express = Routes.mountWeb(this.express, this.dbManager);
     }
 
     private mountViews(): void {
