@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { DataSourceContext } from '../middleware/RepositoryHandler';
-import { VideoRepository } from '../database/manager';
+import { VideoRepository } from '../database/VideoRepository';
 
 class Home {
 	public static async index(req: Request, res: Response, next: any): Promise<void> {

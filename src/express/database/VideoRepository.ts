@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { Videos } from '../models/video';
+import { Videos } from '../../entities/videos.entity';
 
 export class VideoRepository extends Repository<Videos> {
     constructor(readonly dataSource: DataSource){

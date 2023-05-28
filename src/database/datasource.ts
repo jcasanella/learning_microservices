@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm'
 import dotenv from 'dotenv';
 import { join } from 'path';
+import { Videos } from '../entities/videos.entity';
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 
@@ -11,7 +12,7 @@ export const appDataSource = new DataSource({
     username: process.env.USERNAME_DB,
     password: process.env.PASSWORD_DB,
     database: 'micro_videos',
-    entities: ['Videos'],
+    entities: [Videos],
     logging: true,
     synchronize: false,
     migrationsRun: false,
@@ -25,4 +26,5 @@ appDataSource.initialize()
     .catch((err) => {
         console.error('Error during DataSource initialization: ', err);
     });
+
 

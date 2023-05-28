@@ -5,7 +5,8 @@ import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePubli
 import { ConfigView } from './views/ConfigView';
 import { DataSource } from 'typeorm';
 import { RepositoryHandler } from './middleware/RepositoryHandler';
-import { VideoRepository } from './database/manager';
+import { VideoRepository } from './database/VideoRepository';
+import { appDataSource } from '../database/datasource';
 
 class Server {
     private express: express.Application;
@@ -30,13 +31,10 @@ class Server {
         this.express = LastResortErrorHandler.mount(this.express);
         this.express = DirnamePublic.mount(this.express);
         this.express = RepositoryHandler.mount(this.express, this.dataSource);
-
-        const video = new VideoRepository(this.dataSource);
-		console.log(video.getAll());
     }
 
     private mountRoutes(): void {
-        this.express = Routes.mountWeb(this.express);
+        this.express = Routes.mountWeb(this.express, this.dataSource);
     }
 
     private mountViews(): void {
