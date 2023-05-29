@@ -13,10 +13,17 @@ class Routes {
 	}
 
 	private async listMovies(dbManager: DatabaseManager) {
-		const dataSource = dbManager.init();
-		const d: Awaited<typeof dataSource> = await dataSource;
-		const video = new VideoRepository(d);
-		console.log(await video.getAll());
+		// const dataSource = dbManager.init();
+		// const d: Awaited<typeof dataSource> = await dataSource;
+		// const video = new VideoRepository(d);
+
+		const video = dbManager.getVideoRepository();
+		video.then(async repo => {
+			console.log(await repo.getAll());
+		});
+		console.log((await video).getAll());
+		// video.then((_) => { console.log(_.getAll()) });
+		// console.log(await video.getAll());
 	}
 }
 

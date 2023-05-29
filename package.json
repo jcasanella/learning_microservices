@@ -12,9 +12,9 @@
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "start:precondit": "rimraf dist",
+    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug .env dist/",
     "start:build": "tsc -w",
     "start:run": "nodemon dist/index.js",
-    "start:copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.pug .env dist/",
     "start": "concurrently pnpm:start:*"
   },
   "keywords": [],
