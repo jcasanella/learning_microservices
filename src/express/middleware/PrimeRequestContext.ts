@@ -1,10 +1,13 @@
 import { Application, Request, Response } from 'express';
-import { Context } from './Context';
+import { v4 as uuidv4 } from 'uuid';
 
 export class PrimeRequestContext {
 	public static mount(_express: Application): Application {
         _express.use((req: Request, res: Response, next: any) => {
-            Context.bind(req);
+            req.context = {
+                traceId: uuidv4() 
+            };
+            
             next();
         });
 

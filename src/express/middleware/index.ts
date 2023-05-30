@@ -1,5 +1,5 @@
 export * from './AttachLocals';
-export * from './DirNamePublic';
+export * from './PublicResources';
 export * from './LastResortErrorHandler';
 export * from './PrimeRequestContext';
 export * from './DatabaseRequest';

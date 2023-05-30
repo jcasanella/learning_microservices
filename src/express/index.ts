@@ -1,7 +1,7 @@
 import express from 'express';
 import Locals from './Locals';
 import Routes from './Routes';
-import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, DirnamePublic, DatabaseRequest } from './middleware';
+import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, PublicResources, DatabaseRequest } from './middleware';
 import { ConfigView } from './views/ConfigView';
 import { DataSource } from 'typeorm';
 import { DatabaseManager } from './database/DatabaseManager';
@@ -29,8 +29,7 @@ class Server {
         this.express = PrimeRequestContext.mount(this.express);
         this.express = DatabaseRequest.mount(this.express, this.dbManager);
         this.express = LastResortErrorHandler.mount(this.express);
-        this.express = LastResortErrorHandler.mount(this.express);
-        this.express = DirnamePublic.mount(this.express);
+        this.express = PublicResources.mount(this.express);
     }
 
     private mountRoutes(): void {
