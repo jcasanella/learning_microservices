@@ -11,8 +11,7 @@
     "migration:down": "pnpm typeorm-ts-node-commonjs migration:revert -d ./src/database/datasource.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "start:precondit": "rimraf dist",
-    "start:copy-files": "copyfiles -V src/**/*.html src/**/*.css src/**/*.pug .env dist/",
+    "copy-files": "rimraf dist && copyfiles -V -u 1 src/express/public/*.css dist/ && copyfiles -V -u 1 src/express/views/*.pug dist/",
     "start:build": "tsc -w",
     "start:run": "nodemon dist/index.js",
     "start": "concurrently pnpm:start:*"
