@@ -7,6 +7,7 @@
     "gen:version": "node -p \"'export const APP_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "gen:appname": "node -p \"'export const APP_NAME = ' + JSON.stringify(require('./package.json').version) + ';'\" >> src/version.ts",
     "gen": "pnpm pnpm:gen:*",
+    "create-database": "./create_database.sh",
     "migration:up": "tsc && pnpm typeorm-ts-node-commonjs migration:run -d ./src/database/datasource.ts",
     "migration:down": "pnpm typeorm-ts-node-commonjs migration:revert -d ./src/database/datasource.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
