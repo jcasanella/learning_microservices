@@ -9,9 +9,7 @@ class Home {
 		const videoRepository = dbManager.getVideoRepository();
 		const videos = await videoRepository.getAll();
 
-		console.log(videos);
-
-		return res.status(200).render('index', { title: 'Hi hi', message: 'This is a test'});
+		return res.status(200).render('index', { title: 'Hi hi', data: videos });
 	}
 }
 
