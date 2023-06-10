@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Videos {
-    @PrimaryColumn()
-    owner_id!: string
+    @PrimaryColumn({ name: "owner_id" })
+    ownerId!: string
 
     @Column()
     name!: string
@@ -11,8 +11,8 @@ export class Videos {
     @Column()
     description!: string
 
-    @Column()
-    transcoding_status?: string
+    @Column({ name: "transcoding_status" })
+    transcodingStatus?: string
 
     @Column({ name: "view_count" })
     viewCount!: number

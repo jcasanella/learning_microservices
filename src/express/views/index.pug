@@ -17,22 +17,26 @@ html
           p Get the best videos
       
       .container-lg
-        table.table.table-hover.table-sm.table-light
-          thead
-            tr
-              th #
-              th Name
-              th Description
-              th Transcoding
-              th Count
-          tbody
-            each item in data
-              tr
-                td= item.owner_id
-                td= item.name
-                td= item.description
-                td= item.transcoding_status
-                td= item.view_count
+        .row
+          .col-lg-2
+          .col-lg-8
+            table.table.table-hover.table-sm.table-light
+              thead
+                tr
+                  th #
+                  th Name
+                  th Description
+                  th Transcoding
+                  th Count
+              tbody
+                each item in data
+                  tr
+                    td= item.ownerId
+                    td= item.name
+                    td= item.description
+                    td= item.transcodingStatus
+                    td= item.viewCount
+          .col-lg-2
 
       .container-lg.p-5.my-5.bg-dark.text-white
         footer This is my footer
