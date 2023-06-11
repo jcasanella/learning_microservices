@@ -3,3 +3,22 @@
 * {
   box-sizing: border-box;
 }
+
+th {
+  background-color: #212529 !important;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+td.view-count {
+  text-align: right;
+}
+
+td.transcoding {
+  text-align: center;
+}
+
+td {
+  font-size: 14px;
+}
