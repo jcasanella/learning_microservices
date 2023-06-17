@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+a:link, a:visited {
+  text-decoration: none;
+}
+a:hover, a:active {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 th {
   background-color: #212529 !important;
   color: white;
