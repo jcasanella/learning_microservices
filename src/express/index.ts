@@ -33,7 +33,7 @@ class Server {
     }
 
     private mountRoutes(): void {
-        this.express = Routes.mountWeb(this.express, this.dbManager);
+        this.express = Routes.mountWeb(this.express/*, this.dbManager*/);
     }
 
     private mountViews(): void {

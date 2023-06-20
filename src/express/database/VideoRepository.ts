@@ -10,4 +10,8 @@ export class VideoRepository extends Repository<Videos> {
         return await this.find();
     }
 
+    async getById(id: string): Promise<Videos|null> {
+        return await this.findOneBy({ ownerId: id });
+    }
+
 }
