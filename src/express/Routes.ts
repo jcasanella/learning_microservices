@@ -1,21 +1,17 @@
 import { Application } from 'express';
-import webRouter from './controllers/Home'
-// import { DatabaseManager } from './database/DatabaseManager';
+import apiRouter from './routes/Video';
+import homeRouter from './routes/Home';
 
 class Routes {
-	public mountWeb(_express: Application/*, dbManager: DatabaseManager*/): Application {
+	public mountWeb(_express: Application): Application {
 		console.log('Routes :: Mounting Web Routes...');
-
-		// this.listMovies(dbManager);
-
-		return _express.use('/', webRouter.index);
+		return _express.use('/', homeRouter);
 	}
 
-	// private async listMovies(dbManager: DatabaseManager) {
-	// 	const video = dbManager.getVideoRepository();
-	// 	const videos = await video.getAll();
-	// 	console.log(videos);
-	// }
+	public getMovie(_express: Application): Application {
+		console.log('Routes :: Mounting getMovie...');
+		return _express.use('/api', apiRouter);
+	}
 }
 
 export default new Routes;
