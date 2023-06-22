@@ -33,7 +33,7 @@ html
                 each item in data
                   tr
                     td
-                      a#myLink(title='Show Modal Moview' href='#' onclick='showModalMovie(' + item.ownerId + ');return false;')= item.ownerId
+                      a#myLink(title='Show Modal Moview' href='#' onclick='showModalMovie(\'' + item.ownerId + '\');return false;')= item.ownerId
                     td= item.name
                     td= item.description
                     td.transcoding= item.transcodingStatus

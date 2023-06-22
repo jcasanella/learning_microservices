@@ -12,6 +12,8 @@ const showModalMovie = (value) => {
         .catch((err) => console.error(`Fetch problem: ${err.message}`));
     
     var theDiv = document.getElementById("staticBackdrop-body");
+    theDiv.replaceChildren();
+
     var content = document.createTextNode(`Movie with code: ${value} `);
     theDiv.appendChild(content);
     

@@ -16,12 +16,11 @@ class Home {
 	}
 
 	public static async movie(req: Request, res: VideoResponse, next: any): Promise<VideoResponse> {
-		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-		console.log(`get movie: ${req.params.uid}`);
+		console.log(`get movie: ${req.params.uuid}`);
 
 		const dbManager = req.dbManager;
 		const videoRepository = dbManager.getVideoRepository();
-		const video = await videoRepository.getById(req.params.uid);
+		const video = await videoRepository.getById(req.params.uuid);
 
 		console.log(video);
 
