@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm'
 import dotenv from 'dotenv';
 import { join } from 'path';
-import { Videos } from '../entities/videos.entity';
+import { Movies } from '../entities/movies.entity';
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 
@@ -11,8 +11,8 @@ export const appDataSource = new DataSource({
     port: Number.parseInt(process.env.PORT_DB ?? "5432"),
     username: process.env.USERNAME_DB,
     password: process.env.PASSWORD_DB,
-    database: 'micro_videos',
-    entities: [Videos],
+    database: 'movies',
+    entities: [Movies],
     logging: true,
     synchronize: false,
     migrationsRun: false,

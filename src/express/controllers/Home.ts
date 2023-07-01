@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-interface VideoResponse extends Response {
-	video?: string;
+interface MovieResponse extends Response {
+	movie?: string;
   }
 
 class Home {
@@ -9,22 +9,22 @@ class Home {
 		console.log(`Home`);
 
 		const dbManager = req.dbManager;
-		const videoRepository = dbManager.getVideoRepository();
-		const videos = await videoRepository.getAll();
+		const movieRepository = dbManager.getMovieRepository();
+		const movies = await movieRepository.getAll();
 
-		return res.status(200).render('index', { title: 'Hi hi', data: videos });
+		return res.status(200).render('index', { title: 'Hi hi', data: movies });
 	}
 
-	public static async movie(req: Request, res: VideoResponse, next: any): Promise<VideoResponse> {
+	public static async movie(req: Request, res: MovieResponse, next: any): Promise<MovieResponse> {
 		console.log(`get movie: ${req.params.uuid}`);
 
 		const dbManager = req.dbManager;
-		const videoRepository = dbManager.getVideoRepository();
-		const video = await videoRepository.getById(req.params.uuid);
+		const movieRepository = dbManager.getMovieRepository();
+		const movie = await movieRepository.getById(req.params.uuid);
 
-		console.log(video);
+		console.log(movie);
 
-		return res.status(200).json(video);
+		return res.status(200).json(movie);
 	}
 }
 

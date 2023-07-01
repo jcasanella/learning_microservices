@@ -19,11 +19,11 @@ th {
   font-size: 14px;
 }
 
-td.view-count {
+td.rating {
   text-align: right;
 }
 
-td.transcoding {
+td.genre {
   text-align: center;
 }
 

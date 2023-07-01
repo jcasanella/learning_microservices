@@ -7,5 +7,7 @@ PGHOST=$HOST_DB
 PGUSER=$USERNAME_DB
 PGPASSWORD=$PASSWORD_DB
 PGPORT=$PORT_DB
+DB_NAME=movies
 
-docker exec -i docker-db-1 psql -h $PGHOST -p $PGPORT -U $PGUSER -c "CREATE DATABASE micro_videos;"
+docker exec -i docker-db-1 psql -h $PGHOST -p $PGPORT -U $PGUSER -c "CREATE DATABASE ${DB_NAME};"
+docker exec -i docker-db-1 psql -h $PGHOST -p $PGPORT -U $PGUSER -d $DB_NAME -c "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"

@@ -1,15 +1,17 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class Videos1684795106740 implements MigrationInterface {
+export class Movies1684795106740 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        // queryRunner.createDatabase("micro_videos", true);
 
-        await queryRunner.createTable(new Table({name: "videos", columns: [
+        await queryRunner.createTable(new Table({name: "movies", columns: [
             {
-                name: "owner_id",
-                type: "varchar(20)",
-                isPrimary: true
+                name: "id",
+                type: "uuid",
+                isPrimary: true,
+                isUnique: true,
+                generationStrategy: "uuid",
+                default: `uuid_generate_v4()`
             },
             {
                 name: "name",
@@ -22,19 +24,18 @@ export class Videos1684795106740 implements MigrationInterface {
                 isNullable: false
             },
             {
-                name: "transcoding_status",
+                name: "genre",
                 type: "varchar(32)"
             },
             {
-                name: "view_count",
-                type: "int",
+                name: "rating",
+                type: "numeric(3,2)",
                 default: 0
             }
         ]}), true);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("videos");
-        // await queryRunner.dropDatabase("micro_videos");
+        await queryRunner.dropTable("movies");
     }
 }

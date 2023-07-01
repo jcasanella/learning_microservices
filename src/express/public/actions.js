@@ -1,7 +1,7 @@
 const showModalMovie = (value) => {
     console.log(value);
 
-    fetch(`http://localhost:8000/api/video/${value}`)
+    fetch(`http://localhost:8000/api/movie/${value}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP Error: ${response.status}`);

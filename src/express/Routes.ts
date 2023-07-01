@@ -1,5 +1,5 @@
 import { Application } from 'express';
-import apiRouter from './routes/Video';
+import apiRouter from './routes/Movie';
 import homeRouter from './routes/Home';
 
 class Routes {

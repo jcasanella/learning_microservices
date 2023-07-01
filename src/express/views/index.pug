@@ -14,8 +14,8 @@ html
     .container
       .container-lg.p-5.my-5.bg-dark.text-white.text-center
         header
-          h1 Video Service
-          p Get the best videos
+          h1 Movie Streaming
+          p Watch the best movies
       
       .container-lg
         .row
@@ -27,17 +27,17 @@ html
                   th #
                   th Name
                   th Description
-                  th Transcoding
-                  th Count
+                  th Genre
+                  th Rating
               tbody
                 each item in data
                   tr
                     td
-                      a#myLink(title='Show Modal Moview' href='#' onclick='showModalMovie(\'' + item.ownerId + '\');return false;')= item.ownerId
+                      a#myLink(title='Show Modal Movie' href='#' onclick='showModalMovie(\'' + item.id + '\');return false;')= item.id
                     td= item.name
                     td= item.description
-                    td.transcoding= item.transcodingStatus
-                    td.view-count= item.viewCount
+                    td.genre= item.genre
+                    td.rating= item.rating
           .col-lg-2
 
       .container-lg.p-5.my-5.bg-dark.text-white
@@ -48,7 +48,7 @@ html
       .modal-dialog.modal-dialog-centered
         .modal-content
           .modal-header
-            h5#staticBackdropLabel.modal-title Modal title
+            h5#staticBackdropLabel.modal-title Movie Detail
             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
           #staticBackdrop-body.modal-body
             | ...

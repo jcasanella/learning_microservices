@@ -3,6 +3,6 @@ import webRouter from '../controllers/Home'
 
 const router = Router();
 
-router.get('/video/:uuid', webRouter.movie);
+router.get('/movie/:uuid', webRouter.movie);
 
 export default router;

@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm";
-import { VideoRepository } from "./VideoRepository";
+import { MovieRepository } from "./MovieRepository";
 
 export class DatabaseManager {
-    private static videoRepository: VideoRepository | undefined = undefined;
+    private static movieRepository: MovieRepository | undefined = undefined;
 
     constructor(private readonly dataSource: DataSource) {}
 
@@ -18,14 +18,14 @@ export class DatabaseManager {
         return this.dataSource;
     }
 
-    getVideoRepository(): VideoRepository {
-        console.log(`Get VideoRepository - ${this.dataSource.isInitialized}`);
-        if (DatabaseManager.videoRepository === undefined) {
-            console.log(`Initialize video repository`);
-            DatabaseManager.videoRepository = new VideoRepository(this.dataSource);
-            return DatabaseManager.videoRepository;
+    getMovieRepository(): MovieRepository {
+        console.log(`Get MovieRepository - ${this.dataSource.isInitialized}`);
+        if (DatabaseManager.movieRepository === undefined) {
+            console.log(`Initialize movie repository`);
+            DatabaseManager.movieRepository = new MovieRepository(this.dataSource);
+            return DatabaseManager.movieRepository;
         }
 
-        return DatabaseManager.videoRepository;
+        return DatabaseManager.movieRepository;
     }
 }
