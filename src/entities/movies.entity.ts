@@ -2,7 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Movies {
-    @PrimaryGeneratedColumn('uuid')
+    // @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string
 
     @Column()
@@ -16,4 +17,10 @@ export class Movies {
 
     @Column()
     rating!: number
+
+    @Column()
+    actors?: string[]
+
+    @Column({ name: 'cover_picture' })
+    coverPicture?: string
 }

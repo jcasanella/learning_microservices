@@ -7,12 +7,18 @@ export class Movies1684795106740 implements MigrationInterface {
         await queryRunner.createTable(new Table({name: "movies", columns: [
             {
                 name: "id",
-                type: "uuid",
+                type: "int",
                 isPrimary: true,
-                isUnique: true,
-                generationStrategy: "uuid",
-                default: `uuid_generate_v4()`
+                isGenerated: true,
+                generationStrategy: "increment"
             },
+            // {
+            //     name: "uuid",
+            //     type: "uuid",
+            //     isUnique: true,
+            //     generationStrategy: "uuid",
+            //     default: `uuid_generate_v4()`
+            // },
             {
                 name: "name",
                 type: "varchar(128)",
@@ -31,6 +37,16 @@ export class Movies1684795106740 implements MigrationInterface {
                 name: "rating",
                 type: "numeric(3,2)",
                 default: 0
+            },
+            {
+                name: "actors",
+                type: "text[]",
+                isNullable: true
+            },
+            {
+                name: "cover_picture",
+                type: "varchar(255)",
+                isNullable: true
             }
         ]}), true);
     }
