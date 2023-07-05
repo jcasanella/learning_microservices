@@ -18,7 +18,7 @@ export class Movies {
     @Column()
     rating!: number
 
-    @Column()
+    @Column("text", { array: true })
     actors?: string[]
 
     @Column({ name: 'cover_picture' })

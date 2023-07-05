@@ -40,8 +40,9 @@ export class Movies1684795106740 implements MigrationInterface {
             },
             {
                 name: "actors",
-                type: "text[]",
-                isNullable: true
+                type: "text",
+                isNullable: true,
+                isArray: true
             },
             {
                 name: "cover_picture",
