@@ -10,7 +10,10 @@ export class Movies {
     name!: string
 
     @Column()
-    description!: string
+    summary!: string
+
+    @Column({ name: 'short_summary' })
+    shortSummary!: string;
 
     @Column()
     genre?: string

@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from "typeorm"
 export class MoviesData1685051393081 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`INSERT INTO movies (name, description, genre, rating, cover_picture, actors)
+        await queryRunner.query(`INSERT INTO movies (name, summary, genre, rating, cover_picture, actors)
         VALUES
             ('The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', 'Action', 9.0, 'dark_knight.jpg', ARRAY['Christian Bale', 'Michael Caine', 'Heath Ledger', 'Gary Oldman', 'Aaron Eckhart', 'Maggie Gyllenhaal', 'Morgan Freeman']),
             ('American History X', 'Living a life marked by violence, neo-Nazi Derek finally goes to prison after killing two black youths. Upon his release, Derek vows to change; he hopes to prevent his brother, Danny, who idolizes Derek, from following in his footsteps.', 'Drama', 8.5, 'american_history_x.jpg', ARRAY['Edward Norton', 'Edward Furlong', 'Fairuza Balk', 'Stacy Keach', 'Elliott Gould', 'Avery Brooks', 'Beverly D''Angelo']),
