@@ -7,7 +7,7 @@ export class Movies {
     id!: string
 
     @Column()
-    name!: string
+    title!: string
 
     @Column()
     summary!: string

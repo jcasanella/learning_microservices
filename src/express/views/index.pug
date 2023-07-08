@@ -19,14 +19,14 @@ html
       
       .container-lg
         .row
-          .col-lg-2
-          .col-lg-8
+          .col-lg-1
+          .col-lg-10
             table.table.table-hover.table-sm.table-light
               thead
                 tr
                   th #
-                  th Name
-                  th Description
+                  th Title
+                  th Summary
                   th Genre
                   th Rating
               tbody
@@ -34,11 +34,11 @@ html
                   tr
                     td
                       a#myLink(title='Show Modal Movie' href='#' onclick='showModalMovie(\'' + item.id + '\');return false;')= item.id
-                    td= item.name
-                    td= item.description
+                    td= item.title
+                    td= item.shortSummary
                     td.genre= item.genre
                     td.rating= item.rating
-          .col-lg-2
+          .col-lg-1
 
       .container-lg.p-5.my-5.bg-dark.text-white
         footer This is my footer
@@ -51,7 +51,9 @@ html
             h5#staticBackdropLabel.modal-title Movie Detail
             button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
           #staticBackdrop-body.modal-body
-            | ...
+            .container
+              .row
+                .col-9#detailsMovie
+                .col-3#coverMovie
           .modal-footer
             button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
-            button.btn.btn-primary(type='button') Understood

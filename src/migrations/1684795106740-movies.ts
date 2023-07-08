@@ -20,7 +20,7 @@ export class Movies1684795106740 implements MigrationInterface {
             //     default: `uuid_generate_v4()`
             // },
             {
-                name: "name",
+                name: "title",
                 type: "varchar(128)",
                 isNullable: false
             },
