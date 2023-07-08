@@ -25,6 +25,11 @@ export class Movies1684795106740 implements MigrationInterface {
                 isNullable: false
             },
             {
+                name: "short_summary",
+                type: "varchar(256)",
+                isNullable: false
+            },
+            {
                 name: "summary",
                 type: "varchar(1024)",
                 isNullable: false

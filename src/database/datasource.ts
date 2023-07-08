@@ -11,7 +11,7 @@ export const appDataSource = new DataSource({
     port: Number.parseInt(process.env.PORT_DB ?? "5432"),
     username: process.env.USERNAME_DB,
     password: process.env.PASSWORD_DB,
-    database: 'movies',
+    database: 'movie_db',
     entities: [Movies],
     logging: true,
     synchronize: false,
