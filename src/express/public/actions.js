@@ -1,3 +1,22 @@
+const addTextElement = (className, text) => {
+    var theElement = document.getElementById(className);
+    theElement.replaceChildren();
+    var theText = document.createTextNode(text);
+    theElement.appendChild(theText);
+}
+
+const addDetailElement = (caption, text, rootElement) => {
+    var textToAdd = document.createTextNode(text);
+    var paragraph = document.createElement("p");
+    paragraph.classList.add("actorsDialog");
+    var span = document.createElement("span");
+    span.innerHTML = `${caption}: `;
+    paragraph.appendChild(span);
+    paragraph.appendChild(textToAdd);
+    var parentElement = document.getElementById(rootElement);
+    parentElement.appendChild(paragraph); 
+}
+ 
 const showModalMovie = (value) => {
     console.log(value);
 
@@ -12,13 +31,7 @@ const showModalMovie = (value) => {
             console.log(obj)
 
             // Title
-            var theTitle = document.getElementById("staticBackdropLabel");
-            theTitle.replaceChildren();
-            var txtTitle = document.createTextNode(`${obj.title}`);
-            theTitle.appendChild(txtTitle);
-
-            // var content = document.createTextNode(`Movie with code: ${obj.coverPicture} `);
-            // theDiv.appendChild(content);
+            addTextElement("staticBackdropLabel", obj.title);
 
             // Body Image
             var theDivCover = document.getElementById("coverMovie");
@@ -30,11 +43,42 @@ const showModalMovie = (value) => {
 
             theDivCover.appendChild(coverImg);
 
-            // Body details
-            var theDiv = document.getElementById("detailsMovie");
-            theDiv.replaceChildren();
-            var txtSummary = document.createTextNode(`${obj.summary}`);
-            theDiv.appendChild(txtSummary);
+            // Body Show Summary
+            // addTextElement("detailsMovie", obj.summary);
+            // var parentElement = document.getElementById("detailsMovie");
+            // parentElement.replaceChildren();  
+
+            var summaryText = document.createTextNode(obj.summary);
+            var summaryParagraph = document.createElement("p");
+            summaryParagraph.classList.add("actorsDialog");
+            var summarySpan = document.createElement("span");
+            summarySpan.innerHTML = "Summary: ";
+            summaryParagraph.appendChild(summarySpan);
+            summaryParagraph.appendChild(summaryText);
+            var parentElement = document.getElementById("detailsMovie");
+            parentElement.appendChild(summaryParagraph);  
+
+            // Body Show Actors
+            var actorsText = document.createTextNode(obj.actors);
+            var actorsParagraph = document.createElement("p");
+            actorsParagraph.classList.add("actorsDialog");
+            var actorsSpan = document.createElement("span");
+            actorsSpan.innerHTML = "Actors: ";
+            actorsParagraph.appendChild(actorsSpan);
+            actorsParagraph.appendChild(actorsText);
+            var parentElement = document.getElementById("detailsMovie");
+            parentElement.appendChild(actorsParagraph);  
+            
+            // Body Show Genre
+            var genreText = document.createTextNode(obj.genre);
+            var genreParagraph = document.createElement("p");
+            genreParagraph.classList.add("actorsDialog");
+            var genreSpan = document.createElement("span");
+            genreSpan.innerHTML = "Genre: ";
+            genreParagraph.appendChild(genreSpan);
+            genreParagraph.appendChild(genreText);
+            var parentElement = document.getElementById("detailsMovie");
+            parentElement.appendChild(genreParagraph);  
 
             // Show dialog
             var myModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));

@@ -30,3 +30,12 @@ td.genre {
 td {
   font-size: 14px;
 }
+
+p.actorsDialog {
+  font-size: 14px;
+}
+
+p.actorsDialog span {
+  font-size: 14px;
+  font-weight: bold;
+}
