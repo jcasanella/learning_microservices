@@ -1,15 +1,15 @@
 import { Application } from 'express';
-import apiRouter from './routes/Movie';
+import apiRouter from './routes/Api';
 import homeRouter from './routes/Home';
 
 class Routes {
-	public mountWeb(_express: Application): Application {
-		console.log('Routes :: Mounting Web Routes...');
+	public mountHome(_express: Application): Application {
+		console.log('Routes :: Mounting Home...');
 		return _express.use('/', homeRouter);
 	}
 
-	public getMovie(_express: Application): Application {
-		console.log('Routes :: Mounting getMovie...');
+	public mountAPI(_express: Application): Application {
+		console.log('Routes :: Mounting API...');
 		return _express.use('/api', apiRouter);
 	}
 }

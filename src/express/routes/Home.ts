@@ -1,8 +1,8 @@
 import { Router } from "express";
-import webRouter from '../controllers/Home'
+import { MovieHandler } from '../controllers/'
 
 const router = Router();
 
-router.get('/', webRouter.index);
+router.get('/', MovieHandler.index);
 
 export default router;

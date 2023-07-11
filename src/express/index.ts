@@ -33,8 +33,8 @@ class Server {
     }
 
     private mountRoutes(): void {
-        this.express = Routes.mountWeb(this.express);
-        this.express = Routes.getMovie(this.express);
+        this.express = Routes.mountHome(this.express);
+        this.express = Routes.mountAPI(this.express);
     }
 
     private mountViews(): void {

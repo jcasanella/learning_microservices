@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 
 interface MovieResponse extends Response {
 	movie?: string;
-  }
+}
 
-class Home {
+export class MovieHandler {
 	public static async index(req: Request, res: Response, next: any): Promise<void> {
 		console.log(`Home`);
 
@@ -27,5 +27,3 @@ class Home {
 		return res.status(200).json(movie);
 	}
 }
-
-export default Home;
