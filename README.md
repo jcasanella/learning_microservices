@@ -1,27 +1,47 @@
 # Video Streaming Platform
 
-This is a video streaming platform built using microservices following an event-driven architecture and CQRS. The technologies used are TypeScript, Express.js and TypeORM.
+This project is to learn the basics behind an event-driven architecture. 
+The idea is to simulate a platform as Netflix, for streaming videos, implemented with Microservices. The main technologies are:
+
+* TypeScript
+* Express.js
+* Type-ORM
+* Postgres
+* Event-Store
 
 ## Description
 
-The platform allows users to stream videos from their favorite creators. It is built using microservices to ensure scalability and reliability. The platform follows an event-driven architecture and CQRS to ensure that the system is responsive and can handle high traffic.
+The platform allows users to stream movies. It's built using microservices to ensure scalability and reliability. The platform follows an event-driven architecture and CQRS to ensure that the system is responsive and can handle high traffic.
 
-## Technologies
+## How to start the project
 
-The platform is built using the following technologies:
+1. Start the containers with Postgres and EventStoreDb
+```
+cd docker
+docker compose up
+```
 
-- TypeScript
-- Express.js
-- TypeORM
+2. Postgres Database Creation
+```
+pnpm create-database
+```
 
-## Migrations
+3. Run the migrations. This creates the required tables and ingest the data into Postgres
+```
+pnpm migrations:up
+```
 
-We're implementing the migrations using TypeORM. This allows us to easily manage changes to the database schema as we continue to develop the platform.
+4. Copy the static resources. Required until we use web-assembly
+```
+pnpm copy-files
+``` 
 
-### How to run the migrations
+5. Start the server (maybe you need to run the script twice)
+```
+pnpm start
+```
 
-* `pnpm typeorm-ts-node-commonjs migration:run -d ./src/database/datasource.ts`
-
+By default uses port 8000
 
 ## References:
 
