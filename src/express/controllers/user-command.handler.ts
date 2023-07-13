@@ -7,7 +7,11 @@ interface UserMovieResponse extends Response {
 
 type CommandEvent = {
     type: string;
-    created_at: Date;
+    metadata: {
+        traceId: string;
+        userId: string;
+        created_at: Date;
+    };
     id: string;
     message: {
         userId: string;
