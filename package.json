@@ -10,6 +10,8 @@
     "create-database": "./create_database.sh",
     "migration:up": "tsc && pnpm typeorm-ts-node-commonjs migration:run -d ./src/database/datasource.ts",
     "migration:down": "pnpm typeorm-ts-node-commonjs migration:revert -d ./src/database/datasource.ts",
+    "migration:up_events": "tsc && pnpm typeorm-ts-node-commonjs migration:run -d ./src/database/datasource-events.ts",
+    "migration:down_events": "pnpm typeorm-ts-node-commonjs migration:revert -d ./src/database/datasource-events.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "copy-files": "rimraf dist && copyfiles -V -u 1 src/express/public/*.css dist/ && copyfiles -V -u 1 src/express/views/*.pug dist/ && copyfiles -V -u 1 src/express/public/*.js dist/ && copyfiles -V -u 1 src/express/public/images/*.jpg dist/",

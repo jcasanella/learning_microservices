@@ -5,7 +5,7 @@ import { Movies } from '../entities/movies.entity';
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 
-const initDataSource = (dataSource: DataSource) => {
+export const initDataSource = (dataSource: DataSource) => {
     dataSource.initialize()
     .then(() => { 
         console.log(`${dataSource.options.database} DataSource has been initialized successfully.`); 
@@ -26,25 +26,27 @@ export const appDataSource = new DataSource({
     logging: true,
     synchronize: false,
     migrationsRun: false,
-    migrations: ['dist/**/migrations/*.js']
+    migrations: ['dist/migrations/movie_db/*.js']
 });
 
 initDataSource(appDataSource);
 
-export const eventsDataSource = new DataSource({
-    type: 'postgres',
-    host: process.env.HOST_EVENT,
-    port: Number.parseInt(process.env.HOST_EVENT ?? "5432"),
-    username: process.env.USERNAME_EVENT,
-    password: process.env.PASSWORD_EVENT,
-    database: 'event_store',
-    entities: [Message],
-    logging: true,
-    synchronize: false,
-    migrationsRun: false
-});
+// export const eventsDataSource = new DataSource({
+//     type: 'postgres',
+//     host: process.env.HOST_EVENT,
+//     port: Number.parseInt(process.env.HOST_EVENT ?? "5432"),
+//     username: process.env.USERNAME_EVENT,
+//     password: process.env.PASSWORD_EVENT,
+//     database: 'event_store',
+//     // entities: [Message],
+//     logging: true,
+//     synchronize: false,
+//     migrationsRun: false,
+//     migrations: ['dist/migrations/event_store/*.js'],
+//     useUTC: true
+// });
 
-initDataSource(eventsDataSource);
+// initDataSource(eventsDataSource);
 
 // appDataSource.initialize()
 //     .then(() => { 

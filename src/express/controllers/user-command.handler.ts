@@ -27,9 +27,9 @@ export class UserCommandHandler {
 		const movieRepository = dbManager.getMovieRepository();
 		const movie = await movieRepository.getById(req.params.uuid);*/
 
-        const commandEvent: CommandEvent = {
+        const commandEvent = {
             type: "CommandUserWatchMovieEvent",
-            created_at: new Date(),
+            // created_at: new Date(),
             id: `user-${uuidv4()}`,
             message:  {
                 userId: `${req.params.userUuid}`,
