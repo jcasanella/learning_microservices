@@ -21,7 +21,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@eventstore/db-client": "^5.0.1",
     "@types/uuid": "^9.0.1",
     "concurrently": "^8.0.1",
     "dotenv": "^16.0.3",

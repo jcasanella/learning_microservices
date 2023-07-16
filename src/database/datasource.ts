@@ -5,6 +5,16 @@ import { Movies } from '../entities/movies.entity';
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 
+const initDataSource = (dataSource: DataSource) => {
+    dataSource.initialize()
+    .then(() => { 
+        console.log(`${dataSource.options.database} DataSource has been initialized successfully.`); 
+    })
+    .catch((err) => {
+        console.error(`Error during ${name} DataSource initialization: `, err);
+    });
+}
+
 export const appDataSource = new DataSource({
     type: 'postgres',
     host: process.env.HOST_DB,
@@ -19,12 +29,35 @@ export const appDataSource = new DataSource({
     migrations: ['dist/**/migrations/*.js']
 });
 
-appDataSource.initialize()
-    .then(() => { 
-        console.log('DataSource has been initialized successfully.'); 
-    })
-    .catch((err) => {
-        console.error('Error during DataSource initialization: ', err);
-    });
+initDataSource(appDataSource);
 
+export const eventsDataSource = new DataSource({
+    type: 'postgres',
+    host: process.env.HOST_EVENT,
+    port: Number.parseInt(process.env.HOST_EVENT ?? "5432"),
+    username: process.env.USERNAME_EVENT,
+    password: process.env.PASSWORD_EVENT,
+    database: 'event_store',
+    entities: [Message],
+    logging: true,
+    synchronize: false,
+    migrationsRun: false
+});
 
+initDataSource(eventsDataSource);
+
+// appDataSource.initialize()
+//     .then(() => { 
+//         console.log('DataSource has been initialized successfully.'); 
+//     })
+//     .catch((err) => {
+//         console.error('Error during DataSource initialization: ', err);
+//     });
+
+// eventsDataSource.initialize()
+//     .then(() => {
+//         console.log('EventStore Datasource has been initialized successfully.');
+//     })
+//     .catch((err) => {
+//         console.error('Error during EventStore DataSource initialization: ', err);
+//     });
