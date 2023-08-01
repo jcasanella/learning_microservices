@@ -6,16 +6,23 @@ export class Messages1689549173624 implements MigrationInterface {
 
         await queryRunner.createTable(new Table({name: "messages", columns: [
             {
-                name: "id",
-                type: "uuid",
-                isUnique: true,
-                generationStrategy: "uuid",
-                default: `uuid_generate_v4()`
+                name: "global_position",
+                type: "bigint",
+                isPrimary: true,
+                isGenerated: true,
+                generationStrategy: "increment"
             },
             {
                 name: "stream_name",
                 type: "text",
                 isNullable: false
+            },
+            {
+                name: "id",
+                type: "uuid",
+                isUnique: true,
+                generationStrategy: "uuid",
+                default: `uuid_generate_v4()`
             },
             {
                 name: "type",
@@ -28,18 +35,11 @@ export class Messages1689549173624 implements MigrationInterface {
                 isNullable: false
             },
             {
-                name: "global_position",
-                type: "bigint",
-                isPrimary: true,
-                isGenerated: true,
-                generationStrategy: "increment"
-            },
-            {
-                name: "data",
+                name: "metadata",
                 type: "jsonb"
             },
             {
-                name: "metadata",
+                name: "data",
                 type: "jsonb"
             },
             {

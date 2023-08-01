@@ -2,7 +2,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Movies {
-    // @PrimaryGeneratedColumn('uuid')
     @PrimaryGeneratedColumn()
     id!: string
 

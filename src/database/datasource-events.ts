@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
-import { initDataSource } from "./datasource";
 import dotenv from 'dotenv';
 import { join } from 'path';
+import { initDataSource } from "./init-db";
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 
