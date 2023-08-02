@@ -25,13 +25,8 @@ export class Messages1689549173624 implements MigrationInterface {
                 default: `uuid_generate_v4()`
             },
             {
-                name: "type",
-                type: "text",
-                isNullable: false
-            },
-            {
-                name: "position",
-                type: "bigint",
+                name: "version",
+                type: "smallint",
                 isNullable: false
             },
             {

@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity({ schema: 'event_store' })
-export class Events {
+export class Messages {
     // position within the entire table
     @PrimaryGeneratedColumn({ name: 'global_position' })
     globalPosition!: number;
@@ -14,13 +14,9 @@ export class Events {
     @Column({ type: 'uuid' })
     id!: string;
 
-    // Name of the event
-    @Column()
-    type!: string;
-
     // used for optimistic lock. denotes a particular message's position within its stream
     @Column()
-    position!: number;
+    version!: number;
 
     // Metadata of the event
     @Column({ type: 'jsonb' })
@@ -34,9 +30,3 @@ export class Events {
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     time?: Date;
 }
-// name: "id",
-// type: "uuid",
-// isUnique: true,
-// generationStrategy: "uuid",
-// default: `uuid_generate_v4()`
-// },
