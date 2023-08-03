@@ -17,7 +17,7 @@ export const appDataSource = new DataSource({
     logging: true,
     synchronize: false,
     migrationsRun: false,
-    migrations: ['dist/migrations/movie_db/*.js']
+    migrations: ['dist/migrations/movies/*.js']
 });
 
 initDataSource(appDataSource);

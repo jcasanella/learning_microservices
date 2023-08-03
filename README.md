@@ -28,7 +28,7 @@ pnpm create-database
 
 3. Run the migrations. This creates the required tables and ingest the data into Postgres
 ```
-pnpm migrations:up
+pnpm migration:up
 ```
 
 4. Copy the static resources. Required until we use web-assembly

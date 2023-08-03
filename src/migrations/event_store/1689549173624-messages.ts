@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table, TableColumn } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class Messages1689549173624 implements MigrationInterface {
 
@@ -15,6 +15,7 @@ export class Messages1689549173624 implements MigrationInterface {
             {
                 name: "stream_name",
                 type: "text",
+                isUnique: true,
                 isNullable: false
             },
             {
@@ -27,6 +28,7 @@ export class Messages1689549173624 implements MigrationInterface {
             {
                 name: "version",
                 type: "smallint",
+                isUnique: true,
                 isNullable: false
             },
             {
