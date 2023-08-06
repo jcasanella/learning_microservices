@@ -12,22 +12,22 @@ export class MessageRepository extends Repository<Messages> {
 
         await this.dataSource.transaction(async transactionEntityManager => {
             const lockMessagesAggregate = await transactionEntityManager
-                .createQueryBuilder(MessagesAggregate, 'messagesAggregate')
+                .createQueryBuilder(MessagesAggregate, 'messagesAggregateSelect')
                 .where('messagesAggregates.streamName = :streamName', {streamName})
                 .andWhere('messagesAggregate.id =:id', {id})
                 .setLock('optimistic', 1)
                 .getOne();
 
-            let version = lockMessagesAggregate?.version || 0;
-            console.log(`Current version ${version} for ${streamName} ${id}`);
-            version += 1;
+            const messagesAggregate = lockMessagesAggregate ?? MessagesAggregate.createNewMessagesAggregate(streamName, id, 0);
+            messagesAggregate.version += 1;
+
+            console.log(`Current version ${messagesAggregate.version} for ${streamName} ${id}`);
 
             // Save row message
-            message.version = version;
+            message.version = messagesAggregate.version;
             this.save(message);
 
             // Update row 
-            
         });
     }
 }

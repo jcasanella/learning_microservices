@@ -13,4 +13,13 @@ export class MessagesAggregate {
     // used for optimistic lock. denotes a particular message's position within its stream
     @Column()
     version!: number;
+
+    static createNewMessagesAggregate(streamName: string, id: string, version: number) {
+        const messagesAggregate = new MessagesAggregate();
+        messagesAggregate.id = id;
+        messagesAggregate.streamName = streamName;
+        messagesAggregate.version = version;
+
+        return messagesAggregate;
+    }
 }
