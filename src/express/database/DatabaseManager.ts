@@ -1,10 +1,12 @@
 import { DataSource } from "typeorm";
 import { MovieRepository } from "./MovieRepository";
+import { MessageRepository } from "./MessageRepository";
 
 export class DatabaseManager {
-    private static movieRepository: MovieRepository | undefined = undefined;
+    private static movieRepository: MovieRepository | undefined;
+    private static messageRepository: MessageRepository | undefined;
 
-    constructor(private readonly dataSource: DataSource) {}
+    constructor(private readonly dataSource: DataSource, private readonly eventsDataSource: DataSource) {}
 
     async init() {
         await this.dataSource.initialize()
@@ -21,11 +23,22 @@ export class DatabaseManager {
     getMovieRepository(): MovieRepository {
         console.log(`Get MovieRepository - ${this.dataSource.isInitialized}`);
         if (DatabaseManager.movieRepository === undefined) {
-            console.log(`Initialize movie repository`);
+            console.log(`Initialize Movie Repository`);
             DatabaseManager.movieRepository = new MovieRepository(this.dataSource);
             return DatabaseManager.movieRepository;
         }
 
         return DatabaseManager.movieRepository;
+    }
+
+    getMessagesRepository(): MessageRepository {
+        console.log(`Get MessageRepository - ${this.dataSource}`)
+        if (DatabaseManager.messageRepository === undefined) {
+            console.log(`Initialize Message Repository`);
+            DatabaseManager.messageRepository = new MessageRepository(this.eventsDataSource);
+            return DatabaseManager.messageRepository;
+        }
+
+        return DatabaseManager.messageRepository;
     }
 }

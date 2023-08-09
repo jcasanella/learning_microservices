@@ -28,6 +28,7 @@ export class MessageRepository extends Repository<Messages> {
             this.save(message);
 
             // Update row 
+            await transactionEntityManager.getRepository(MessagesAggregate).save(messagesAggregate);
         });
     }
 }

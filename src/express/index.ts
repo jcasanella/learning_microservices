@@ -10,9 +10,9 @@ class Server {
     private express: express.Application;
     private dbManager: DatabaseManager;
 
-    constructor(private readonly dataSource: DataSource) {
+    constructor(dataSource: DataSource, eventsDataSource: DataSource) {
         this.express = express();
-        this.dbManager = new DatabaseManager(dataSource);
+        this.dbManager = new DatabaseManager(dataSource, eventsDataSource);
 
         this.mountDotEnv();
         this.mountMiddleware();
