@@ -1,4 +1,4 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity } from 'typeorm';
 
 @Entity({ schema: 'event_store', name: 'messages_aggregate' })
 export class MessagesAggregate {

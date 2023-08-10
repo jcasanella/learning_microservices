@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import { MovieHandler, UserCommandHandler } from '../controllers'
 
 const router = Router();

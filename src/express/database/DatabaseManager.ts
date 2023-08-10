@@ -1,6 +1,7 @@
-import { DataSource } from "typeorm";
-import { MovieRepository } from "./MovieRepository";
-import { MessageRepository } from "./MessageRepository";
+
+import { MovieRepository } from './MovieRepository';
+import { MessageRepository } from './MessageRepository';
+import { DataSource } from 'typeorm/data-source/DataSource';
 
 export class DatabaseManager {
     private static movieRepository: MovieRepository | undefined;
@@ -8,8 +9,8 @@ export class DatabaseManager {
 
     constructor(private readonly dataSource: DataSource, private readonly eventsDataSource: DataSource) {}
 
-    async init() {
-        await this.dataSource.initialize()
+    private async initialize(dataSource: DataSource) {
+        await dataSource.initialize()
         .then(() => { 
             console.log('DataSource has been initialized successfully.'); 
         })
@@ -17,7 +18,15 @@ export class DatabaseManager {
             console.error('Error during DataSource initialization: ', err);
         }); 
 
-        return this.dataSource;
+        return dataSource;
+    }
+
+    async init() {
+        return await this.initialize(this.dataSource);
+    }
+
+    async initEvents() {
+        return await this.initialize(this.eventsDataSource);
     }
 
     getMovieRepository(): MovieRepository {
@@ -40,5 +49,10 @@ export class DatabaseManager {
         }
 
         return DatabaseManager.messageRepository;
+    }
+
+    async destroy(): Promise<void> {
+        await this.dataSource.destroy();
+        await this.eventsDataSource.destroy();
     }
 }

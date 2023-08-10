@@ -1,6 +1,6 @@
-import { DataSource, Repository } from "typeorm";
-import { Messages } from "../../entities/messages.entity";
-import { MessagesAggregate } from "../../entities/messages_aggregate.entity";
+import { DataSource, Repository } from 'typeorm';
+import { Messages } from '../../entities/messages.entity';
+import { MessagesAggregate } from '../../entities/messages_aggregate.entity';
 
 export class MessageRepository extends Repository<Messages> {
     constructor(readonly dataSource: DataSource){

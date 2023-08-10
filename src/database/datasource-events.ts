@@ -1,8 +1,8 @@
-import { DataSource } from "typeorm";
+import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import { join } from 'path';
-import { initDataSource } from "./init-db";
-import { Messages } from "../entities/messages.entity";
+import { initDataSource } from './init-db';
+import { Messages } from '../entities/messages.entity';
 
 dotenv.config({ path: join(__dirname, '../../.env') });
 

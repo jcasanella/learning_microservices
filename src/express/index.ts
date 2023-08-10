@@ -1,18 +1,15 @@
 import express from 'express';
 import Locals from './Locals';
 import Routes from './Routes';
-import { AttachLocals, PrimeRequestContext, LastResortErrorHandler, PublicResources, DatabaseRequest } from './middleware';
 import { ConfigView } from './views/ConfigView';
-import { DataSource } from 'typeorm';
 import { DatabaseManager } from './database/DatabaseManager';
+import { AttachLocals, DatabaseRequest, LastResortErrorHandler, PrimeRequestContext, PublicResources } from './middleware/index';
 
 class Server {
     private express: express.Application;
-    private dbManager: DatabaseManager;
 
-    constructor(dataSource: DataSource, eventsDataSource: DataSource) {
+    constructor(private readonly dbManager: DatabaseManager) {
         this.express = express();
-        this.dbManager = new DatabaseManager(dataSource, eventsDataSource);
 
         this.mountDotEnv();
         this.mountMiddleware();
@@ -50,7 +47,7 @@ class Server {
 			console.table([['Port', port], ['Version', version]]);
 		}).on('error', (_error) => {
 			console.log('Error: ', _error.message);
-            this.dataSource.destroy();
+            this.dbManager.destroy();
 		});
 	}
 }

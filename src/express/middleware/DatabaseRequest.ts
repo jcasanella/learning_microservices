@@ -1,5 +1,5 @@
-import { Application, Request, Response } from "express";
-import { DatabaseManager } from "../database/DatabaseManager";
+import { Application, Request, Response } from 'express';
+import { DatabaseManager } from '../database/DatabaseManager';
 
 export class DatabaseRequest {
     public static mount(_express: Application, dbManager: DatabaseManager): Application {
